@@ -1,0 +1,28 @@
+sensor.home_assistant_v2_db:
+  friendly_name: "Database size"
+  icon: "mdi:database"
+sensor.disk_use_config_beton:
+  friendly_name: "Beton disk use"
+sensor.disk_use:
+  friendly_name: "PI disk use"
+device_tracker.david:
+  friendly_name: "David"
+device_tracker.niki:
+  friendly_name: "Niki"
+sensor.daily_price:
+  icon: "mdi:home-currency-usd"
+sensor.kelbimbo_current:
+  friendly_name: "kelbimbo current consumption"
+sensor.kelbimbo_today:
+  friendly_name: "kelbimbo today consumption"
+switch.zeller:
+  icon: "mdi:power-socket-de"
+sensor.yesterday_consumption_zeller:
+  friendly_name: "zeller yesterday consumption"
+  icon: "mdi:flash"
+sensor.yesterday_consumption_kelbimbo:
+  friendly_name: "kelbimbo yesterday consumption"
+  icon: "mdi:flash"
+sensor.yesterday_consumption_karfiol:
+  friendly_name: "karfiol yesterday consumption"
+  icon: "mdi:flash"

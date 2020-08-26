@@ -1,0 +1,227 @@
+###################
+# Karfiol - BW-SHP6
+###################
+- alias: "Save karfiol daily consumption"
+  trigger:
+    platform: time_pattern
+    minutes: /30
+  condition:
+    condition: template
+    value_template: '{{ (as_timestamp(now()) - as_timestamp(states.sensor.karfiol_today.last_changed)) < 86400 }}'
+  action:
+    service: shell_command.today_consumption_karfiol
+
+- alias: "Get karfiol yesterday consumption"
+  trigger:
+    platform: time_pattern
+    minutes: /60
+  action:
+    service: shell_command.get_yesterday_consumption_karfiol
+
+- alias: "Notify karfiol consumption"
+  trigger:
+    platform: time
+    at: '10:00:00'
+  action:
+    service: notify.slack_bot_consumption
+    data_template:
+      title: Consumption
+      message: 'karfiol yesterday consumption: {{ states(''sensor.yesterday_consumption_karfiol'')}}Wh'
+
+###################
+# Zeller - TP-Link HS110
+###################
+- alias: "Save zeller daily consumption"
+  trigger:
+    platform: time_pattern
+    minutes: /30
+  condition:
+    condition: template
+    value_template: '{{ (as_timestamp(now()) - as_timestamp(states.sensor.zeller_today_kwh.last_changed)) < 86400 }}'
+  action:
+    service: shell_command.today_consumption_zeller
+
+- alias: "Get zeller yesterday consumption"
+  trigger:
+    platform: time_pattern
+    minutes: /60
+  action:
+    service: shell_command.get_yesterday_consumption_zeller
+
+- alias: "Notify zeller consumption"
+  trigger:
+    platform: time
+    at: '10:00:00'
+  action:
+    service: notify.slack_bot_consumption
+    data_template:
+      title: Consumption
+      message: 'Zeller yesterday consumption: {{ states(''sensor.yesterday_consumption_zeller'')}}Wh'
+
+###################
+# Kelbimbo - Sonoff Pow R2
+###################
+- alias: "Save kelbimbo daily consumption"
+  trigger:
+    platform: time_pattern
+    minutes: /30
+  condition:
+    condition: template
+    value_template: '{{ (as_timestamp(now()) - as_timestamp(states.sensor.kelbimbo_today.last_changed)) < 86400 }}'
+  action:
+    service: shell_command.today_consumption_kelbimbo
+
+- alias: "Get kelbimbo yesterday consumption"
+  trigger:
+    platform: time_pattern
+    minutes: /60
+  action:
+    service: shell_command.get_yesterday_consumption_kelbimbo
+
+- alias: "Notify kelbimbo consumption"
+  trigger:
+    platform: time
+    at: '10:00:00'
+  action:
+    service: notify.slack_bot_consumption
+    data_template:
+      title: Consumption
+      message: 'Kelbimbo yesterday consumption: {{ states(''sensor.yesterday_consumption_kelbimbo'')}}Wh'
+
+###################
+# Power saving
+###################
+- alias: "Shutdown zeller if not used"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.zeller_watts
+    below: 5
+    for:
+      minutes: 5
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.zeller
+
+- alias: "Shutdown kelbimbo if not used"
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.kelbimbo_current
+    below: 5
+    for:
+      minutes: 5
+  action:
+    service: homeassistant.turn_off
+    entity_id: switch.kelbimbo
+
+###################
+# Opple
+###################
+- alias: "Opple - zeller toggle"
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/aqara_opple
+  condition:
+    condition: template
+    value_template: '{{ trigger.payload_json.action == "button_1_single"}}'
+  action:
+  - service: switch.toggle
+    entity_id: switch.zeller
+
+- alias: "Opple - kelbimbo toggle"
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/aqara_opple
+  condition:
+    condition: template
+    value_template: '{{ trigger.payload_json.action == "button_2_single"}}'
+  action:
+  - service: switch.toggle
+    entity_id: switch.kelbimbo
+
+- alias: "Opple - humidifier toggle"
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/aqara_opple
+  condition:
+    condition: template
+    value_template: '{{ trigger.payload_json.action == "button_3_single"}}'
+  action:
+  - service: fan.toggle
+    entity_id: fan.xiaomi_miio_device
+
+- alias: "Opple - tradfri bulb toggle"
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/aqara_opple
+  condition:
+    condition: template
+    value_template: '{{ trigger.payload_json.action == "button_4_single"}}'
+  action:
+  - service: light.toggle
+    entity_id: light.tradfri_light
+
+###################
+# Air Purifier
+###################
+- alias: "Air Purifier mode change"
+  trigger:
+    entity_id: input_select.xiaomi_airpurifier_mode
+    platform: state
+  action:
+    service: fan.set_speed
+    data_template:
+      entity_id: fan.xiaomi_miio_device
+      speed: '{{ states.input_select.xiaomi_airpurifier_mode.state }}'
+
+- alias: "Air Purifier mode changed"
+  trigger:
+    platform: state
+    entity_id: fan.xiaomi_miio_device
+  action:
+    service: input_select.select_option
+    entity_id: input_select.xiaomi_airpurifier_mode
+    data_template:
+      option: '{{ states.fan.xiaomi_miio_device.attributes.speed }}'
+
+- alias: "Air Purifier favorite level change"
+  trigger:
+    entity_id: input_number.xiaomi_airpurifier_favorite_level
+    platform: state
+  action:
+    service: xiaomi_miio.fan_set_favorite_level
+    data_template:
+      entity_id: fan.xiaomi_miio_device
+      level: '{{ states.input_number.xiaomi_airpurifier_favorite_level.state | int }}'
+
+- alias: "Air Purifier favorite level changed"
+  trigger:
+    platform: state
+    entity_id: fan.xiaomi_miio_device
+  action:
+    service: input_number.set_value
+    entity_id: input_number.xiaomi_airpurifier_favorite_level
+    data_template:
+      value: '{{ states.fan.xiaomi_miio_device.attributes.favorite_level }}'
+
+###################
+# Torrents
+###################
+- alias: "Torrents started"
+  trigger:
+    platform: event
+    event_type: transmission_started_torrent
+  action:
+    service: notify.slack_bot_transmission
+    data_template:
+      title: Torrent completed!
+      message: Started downloading of {{trigger.event.data.name}}
+
+- alias: "Torrents done"
+  trigger:
+    platform: event
+    event_type: transmission_downloaded_torrent
+  action:
+    service: notify.slack_bot_transmission
+    data_template:
+      title: Torrent completed!
+      message: Downloading of {{trigger.event.data.name}} is finished

@@ -1,0 +1,9 @@
+.storage/*
+!.storage/lovelace*
+alexa_media*
+beton
+log
+home-assistant.log
+home-assistant_v2*
+secrets.yaml
+*.pyc

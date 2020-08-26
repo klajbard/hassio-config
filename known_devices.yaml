@@ -1,0 +1,15 @@
+niki:
+  hide_if_away: false
+  icon: mdi:face-woman-outline
+  mac:
+  name: niki
+  picture:
+  track: true
+
+david:
+  hide_if_away: false
+  icon: mdi:face-outline
+  mac:
+  name: david
+  picture:
+  track: true

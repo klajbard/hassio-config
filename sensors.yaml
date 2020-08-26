@@ -1,0 +1,527 @@
+####################
+# FILE
+####################
+#%% Consumption reporter
+- platform: file
+  name: elmu_kwh_price
+  file_path: /config/scripts/elmu_price
+  scan_interval: 86400 # 1 day
+  value_template: '{{ value | int }}'
+  unit_of_measurement: 'HUF/kWh'
+- platform: file
+  name: yesterday_consumption_zeller
+  file_path: /config/log/zeller/yesterday
+  scan_interval: 1800 # 30 minutes
+  value_template: '{{ value | int }}'
+  unit_of_measurement: 'Wh'
+- platform: file
+  name: yesterday_consumption_kelbimbo
+  file_path: /config/log/kelbimbo/yesterday
+  scan_interval: 1800 # 30 minutes
+  value_template: '{{ value | int }}'
+  unit_of_measurement: 'Wh'
+- platform: file
+  name: yesterday_consumption_karfiol
+  file_path: /config/log/karfiol/yesterday
+  scan_interval: 1800 # 30 minutes
+  value_template: '{{ value | int }}'
+  unit_of_measurement: 'Wh'
+
+####################
+# MQTT
+####################
+#%% NodeMCU BME280
+- platform: mqtt
+  state_topic: "sensor/nodemcubme"
+  name: nodemcu_temp
+  unit_of_measurement: '°C'
+  value_template: "{{ value_json.temperature | round(1) }}"
+- platform: mqtt
+  state_topic: "sensor/nodemcubme"
+  name: nodemcu_humidity
+  unit_of_measurement: '%'
+  device_class: "humidity"
+  value_template: "{{ value_json.humidity | round(1) }}"
+- platform: mqtt
+  state_topic: "sensor/nodemcubme"
+  name: nodemcu_pressure
+  unit_of_measurement: 'hPa'
+  device_class: "pressure"
+  value_template: "{{ value_json.pressure | round(1) }}"
+
+- platform: "mqtt"
+  name: aqara_motion_illuminance
+  state_topic: "zigbee2mqtt/aqara_motion"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "-"
+  device_class: "illuminance"
+  value_template: "{{ value_json.illuminance }}"
+- platform: "mqtt"
+  name: aqara_motion_battery
+  state_topic: "zigbee2mqtt/aqara_motion"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_motion_lqi
+  state_topic: "zigbee2mqtt/aqara_motion"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_motion2_illuminance
+  state_topic: "zigbee2mqtt/aqara_motion2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "-"
+  device_class: "illuminance"
+  value_template: "{{ value_json.illuminance }}"
+- platform: "mqtt"
+  name: aqara_motion2_battery
+  state_topic: "zigbee2mqtt/aqara_motion2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_motion2_lqi
+  state_topic: "zigbee2mqtt/aqara_motion2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: mijia_temp_temperature
+  state_topic: "zigbee2mqtt/mijia_temp"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+  value_template: "{{ value_json.temperature }}"
+- platform: "mqtt"
+  name: mijia_temp_humidity
+  state_topic: "zigbee2mqtt/mijia_temp"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "humidity"
+  value_template: "{{ value_json.humidity }}"
+- platform: "mqtt"
+  name: mijia_temp_battery
+  state_topic: "zigbee2mqtt/mijia_temp"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: mijia_temp_lqi
+  state_topic: "zigbee2mqtt/mijia_temp"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_temp_temperature
+  state_topic: "zigbee2mqtt/aqara_temp"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+  value_template: "{{ value_json.temperature }}"
+- platform: "mqtt"
+  name: aqara_temp_humidity
+  state_topic: "zigbee2mqtt/aqara_temp"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "humidity"
+  value_template: "{{ value_json.humidity }}"
+- platform: "mqtt"
+  name: aqara_temp_pressure
+  state_topic: "zigbee2mqtt/aqara_temp"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "hPa"
+  device_class: "pressure"
+  value_template: "{{ value_json.pressure }}"
+- platform: "mqtt"
+  name: aqara_temp_battery
+  state_topic: "zigbee2mqtt/aqara_temp"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_temp_linkquality
+  state_topic: "zigbee2mqtt/aqara_temp"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_temp2_temperature
+  state_topic: "zigbee2mqtt/aqara_temp2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+  value_template: "{{ value_json.temperature }}"
+- platform: "mqtt"
+  name: aqara_temp2_humidity
+  state_topic: "zigbee2mqtt/aqara_temp2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "humidity"
+  value_template: "{{ value_json.humidity }}"
+- platform: "mqtt"
+  name: aqara_temp2_pressure
+  state_topic: "zigbee2mqtt/aqara_temp2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "hPa"
+  device_class: "pressure"
+  value_template: "{{ value_json.pressure }}"
+- platform: "mqtt"
+  name: aqara_temp2_battery
+  state_topic: "zigbee2mqtt/aqara_temp2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_temp2_linkquality
+  state_topic: "zigbee2mqtt/aqara_temp2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_temp3_temperature
+  state_topic: "zigbee2mqtt/aqara_temp3"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+  value_template: "{{ value_json.temperature }}"
+- platform: "mqtt"
+  name: aqara_temp3_humidity
+  state_topic: "zigbee2mqtt/aqara_temp3"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "humidity"
+  value_template: "{{ value_json.humidity }}"
+- platform: "mqtt"
+  name: aqara_temp3_pressure
+  state_topic: "zigbee2mqtt/aqara_temp3"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "hPa"
+  device_class: "pressure"
+  value_template: "{{ value_json.pressure }}"
+- platform: "mqtt"
+  name: aqara_temp3_battery
+  state_topic: "zigbee2mqtt/aqara_temp3"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_temp3_linkquality
+  state_topic: "zigbee2mqtt/aqara_temp3"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_door_battery
+  state_topic: "zigbee2mqtt/aqara_door"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_door_linkquality
+  state_topic: "zigbee2mqtt/aqara_door"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_door2_battery
+  state_topic: "zigbee2mqtt/aqara_door2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_door2_linkquality
+  state_topic: "zigbee2mqtt/aqara_door2"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_door3_battery
+  state_topic: "zigbee2mqtt/aqara_door3"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_door3_linkquality
+  state_topic: "zigbee2mqtt/aqara_door3"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: mijia_light_battery
+  state_topic: "zigbee2mqtt/mijia_light"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: mijia_light_illuminance
+  state_topic: "zigbee2mqtt/mijia_light"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "-"
+  device_class: "illuminance"
+  value_template: "{{ value_json.illuminance }}"
+- platform: "mqtt"
+  name: mijia_light_lux
+  state_topic: "zigbee2mqtt/mijia_light"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "lx"
+  device_class: "illuminance"
+  value_template: "{{ value_json.illuminance_lux }}"
+- platform: "mqtt"
+  name: mijia_light_linkquality
+  state_topic: "zigbee2mqtt/mijia_light"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_cube_action
+  state_topic: "zigbee2mqtt/aqara_cube"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:gesture-double-tap"
+  value_template: "{{ value_json.action }}"
+- platform: "mqtt"
+  name: aqara_cube_angle
+  state_topic: "zigbee2mqtt/aqara_cube"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:axis-z-rotate-counterclockwise"
+  value_template: "{{ value_json.angle }}"
+- platform: "mqtt"
+  name: aqara_cube_side
+  state_topic: "zigbee2mqtt/aqara_cube"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:cube-outline"
+  value_template: "{{ value_json.side }}"
+- platform: "mqtt"
+  name: aqara_cube_battery
+  state_topic: "zigbee2mqtt/aqara_cube"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_cube_linkquality
+  state_topic: "zigbee2mqtt/aqara_cube"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_opple_action
+  state_topic: "zigbee2mqtt/aqara_opple"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:gesture-double-tap"
+  value_template: "{{ value_json.action }}"
+- platform: "mqtt"
+  name: aqara_opple_battery
+  state_topic: "zigbee2mqtt/aqara_opple"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_opple_linkquality
+  state_topic: "zigbee2mqtt/aqara_opple"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: "mqtt"
+  name: aqara_vibration_action
+  state_topic: "zigbee2mqtt/aqara_vibration"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:gesture-double-tap"
+  value_template: "{{ value_json.action }}"
+- platform: "mqtt"
+  name: aqara_vibration_battery
+  state_topic: "zigbee2mqtt/aqara_vibration"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  unit_of_measurement: "%"
+  device_class: "battery"
+  value_template: "{{ value_json.battery }}"
+- platform: "mqtt"
+  name: aqara_vibration_sensitivity
+  state_topic: "zigbee2mqtt/aqara_vibration"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  value_template: "{{ value_json.sensitivity }}"
+  icon: "mdi:filter-variant"
+- platform: "mqtt"
+  name: aqara_vibration_strength
+  state_topic: "zigbee2mqtt/aqara_vibration"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  value_template: "{{ value_json.strength }}"
+  icon: "mdi:weight"
+- platform: "mqtt"
+  name: aqara_vibration_linkquality
+  state_topic: "zigbee2mqtt/aqara_vibration"
+  availability_topic: "zigbee2mqtt/bridge/state"
+  icon: "mdi:signal"
+  unit_of_measurement: "lqi"
+  value_template: "{{ value_json.linkquality }}"
+
+- platform: mqtt
+  name: kelbimbo_current
+  state_topic: "tele/powerstrip/SENSOR"
+  unit_of_measurement: 'W'
+  value_template: "{{ value_json.ENERGY.Power }}"
+  icon: "mdi:flash"
+- platform: mqtt
+  name: kelbimbo_today
+  state_topic: "tele/powerstrip/SENSOR"
+  unit_of_measurement: 'Wh'
+  value_template: "{{ value_json.ENERGY.Today | float * 1000 | int }}"
+  icon: "mdi:flash"
+
+- platform: mqtt
+  name: karfiol_current
+  state_topic: "tele/shp/SENSOR"
+  value_template: '{{ value_json.ENERGY.Power }}'
+  unit_of_measurement: "W"
+- platform: mqtt
+  name: karfiol_today
+  state_topic: "tele/shp/SENSOR"
+  value_template: '{{ value_json.ENERGY.Today | float * 1000 | int }}'
+  unit_of_measurement: "Wh"
+
+- platform: "mqtt"
+  name: 'Predator battery'
+  state_topic: "predator/status/battery"
+  availability_topic: "predator/status/power"
+  icon: "mdi:signal"
+  unit_of_measurement: "%"
+  
+- platform: "mqtt"
+  name: airquality
+  state_topic: 'sensor/airquality'
+  unit_of_measurement: 'ppm'
+
+####################
+# Template
+####################
+- platform: template
+  sensors:
+    zeller_watts:
+      friendly_name_template: "{{ states.switch.zeller.name}} current consumption"
+      value_template: >-
+        {% if is_state('switch.zeller', 'unavailable') %}
+          0
+        {% else %}
+          {{ states.switch.zeller.attributes["current_power_w"] | float }}
+        {% endif %}
+      unit_of_measurement: 'W'
+      icon_template: "mdi:flash"
+    zeller_today_kwh:
+      friendly_name_template: "{{ states.switch.zeller.name}} today consumption"
+      value_template: >-
+        {% if is_state('switch.zeller', 'unavailable') %}
+          0
+        {% else %}
+          {{ states.switch.zeller.attributes["today_energy_kwh"] | float * 1000 | int }}
+        {% endif %}
+      unit_of_measurement: 'Wh'
+      icon_template: "mdi:flash"
+    daily_price:
+      value_template: '{{ (((states.sensor.karfiol_today.state | float) + (states.sensor.kelbimbo_today.state | float) + (states.sensor.zeller_today_kwh.state | float)) * (states.sensor.elmu_kwh_price.state | float) / 1000) | round(2)}}'
+      unit_of_measurement: 'Ft'
+
+- platform: template
+  sensors:
+    xiaomi_airpurifier_temp:
+      friendly_name: "Temperature"
+      value_template: "{{ state_attr('fan.xiaomi_miio_device', 'temperature') }}"
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+    xiaomi_airpurifier_humidity:
+      friendly_name: "Humidity"
+      value_template: "{{ state_attr('fan.xiaomi_miio_device', 'humidity') }}"
+      unit_of_measurement: "%"
+      device_class: "humidity"
+    xiaomi_airpurifier_air_quality_pm25:
+      friendly_name: "Air quality"
+      value_template: "{{ state_attr('fan.xiaomi_miio_device', 'aqi') }}"
+      unit_of_measurement: "μg/m³"
+      icon_template: "mdi:weather-fog"
+    xiaomi_airpurifier_speed:
+      friendly_name: "Fan speed"
+      value_template: "{{ state_attr('fan.xiaomi_miio_device', 'motor_speed') }}"
+      unit_of_measurement: "rpm"
+      icon_template: "mdi:speedometer"
+    xiaomi_airpurifier_filter_remaining:
+      friendly_name: "Filter remaining"
+      value_template: "{{ state_attr('fan.xiaomi_miio_device', 'filter_life_remaining') }}"
+      unit_of_measurement: "%"
+      icon_template: "mdi:heart-outline"
+
+####################
+# Filesize reporter
+####################
+- platform: filesize
+  scan_interval: 14400 # 4 hours
+  file_paths:
+    - /config/home-assistant_v2.db
+
+####################
+# Monitor RPI system
+####################
+- platform: systemmonitor
+  scan_interval: 14400 # 4 hours
+  resources:
+    - type: disk_use
+      arg: /
+    - type: disk_use
+      arg: /config/beton
+
+####################
+# CMD
+####################
+#%% Hygrometer GPIO
+- platform: command_line
+  name: rpi_temperature
+  command: 'cat /config/log/dht_rpi'
+  value_template: "{{ value_json.temperature }}"
+  scan_interval: 60
+  unit_of_measurement: '°C'
+- platform: command_line
+  name: rpi_humidity
+  command: 'cat /config/log/dht_rpi'
+  scan_interval: 60
+  unit_of_measurement: '%'
+  value_template: "{{ value_json.humidity }}"
+#%% RPI CPU temp
+- platform: command_line
+  name: rpi_cpu_temp
+  command: "cat /sys/class/thermal/thermal_zone0/temp"
+  unit_of_measurement: "°C"
+  value_template: '{{ value | multiply(0.001) | round(1) }}'

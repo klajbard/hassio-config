@@ -1,0 +1,287 @@
+####################
+# Default config
+####################
+automation: !include automations.yaml
+
+config:
+
+frontend:
+
+history:
+  exclude:
+    domains:
+      - automation
+      - updater
+    entities:
+      - sensor.aws_monthly_cost
+      - sensor.disk_use
+      - sensor.disk_use_config_beton
+      - sensor.yesterday_consumption_kelbimbo
+      - sensor.yesterday_consumption_zeller
+      - sensor.local_ip
+
+fan:
+  - platform: xiaomi_miio
+    host: 192.168.1.228
+    token: !secret xiaomi_token
+
+logbook:
+
+logger:
+  default: debug
+
+sun:
+
+system_health:
+
+updater:
+  reporting: false
+
+local_ip:
+
+homeassistant:
+  latitude: !secret lat
+  longitude: !secret lon
+  time_zone: Europe/Budapest
+  customize: !include customize.yaml
+  whitelist_external_dirs:
+    - /config
+    - /config/scripts
+  auth_mfa_modules:
+    - type: totp
+
+recorder:
+  purge_keep_days: 3
+  exclude: !include exclude.yaml
+group: !include groups.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+
+discovery:
+###################
+# Yeelight
+###################
+yeelight:
+  devices:
+    192.168.1.164:
+      name: Living Room
+
+####################
+# Yi cam
+####################
+stream:
+ffmpeg:
+camera:
+  - platform: ffmpeg
+    name: yi_cam_1
+    input: -rtsp_transport tcp -i rtsp://192.168.1.131/ch0_1.h264
+  - platform: ffmpeg
+    name: yi_cam_2
+    input: -rtsp_transport tcp -i rtsp://192.168.1.170/ch0_1.h264
+  - platform: ffmpeg
+    name: yi_cam_3
+    input: -rtsp_transport tcp -i rtsp://192.168.1.144/ch0_1.h264
+
+####################
+# Shell commands
+####################
+shell_command:
+    today_consumption_zeller: 'sh /config/scripts/cons.sh zeller {{states("sensor.zeller_today_kwh")}}'
+    get_yesterday_consumption_zeller: 'sh /config/scripts/get_yesterday_cons.sh zeller > /config/log/zeller/yesterday'
+    today_consumption_kelbimbo: 'sh /config/scripts/cons.sh kelbimbo {{states("sensor.kelbimbo_today")}}'
+    get_yesterday_consumption_kelbimbo: 'sh /config/scripts/get_yesterday_cons.sh kelbimbo > /config/log/kelbimbo/yesterday'
+    today_consumption_karfiol: 'sh /config/scripts/cons.sh karfiol {{states("sensor.karfiol_today")}}'
+    get_yesterday_consumption_karfiol: 'sh /config/scripts/get_yesterday_cons.sh karfiol > /config/log/karfiol/yesterday'
+
+####################
+# Notifications_
+####################
+notify:
+  - name: slack_bot
+    platform: slack
+    api_key: !secret slack_api
+    default_channel: '#general'
+  - name: slack_bot_consumption
+    platform: slack
+    api_key: !secret slack_api
+    default_channel: '#consumption'
+  - name: slack_bot_transmission
+    platform: slack
+    api_key: !secret slack_api
+    default_channel: '#transmission'
+
+####################
+# Transmission
+####################
+transmission:
+  host: !secret ip_transmission
+  username: !secret transmission_username
+  password: !secret transmission_password
+
+####################
+# TP Link
+####################
+tplink:
+  discovery: false
+  switch:
+    - host: !secret ip_tplink_switch
+
+####################
+# Device trackers
+####################
+device_tracker:
+  - platform: ping
+    scan_interval: 300
+    hosts:
+      david: !secret ip_david
+  - platform: ping
+    scan_interval: 300
+    hosts:
+      niki: !secret ip_niki
+
+####################
+# MQTT sensors
+####################
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+binary_sensor:
+  - platform: "mqtt"
+    name: aqara_door
+    state_topic: "zigbee2mqtt/aqara_door"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
+  - platform: "mqtt"
+    name: aqara_door2
+    state_topic: "zigbee2mqtt/aqara_door2"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
+  - platform: "mqtt"
+    name: aqara_door3
+    state_topic: "zigbee2mqtt/aqara_door3"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: false
+    payload_off: true
+    value_template: "{{ value_json.contact }}"
+    device_class: "door"
+  - platform: "mqtt"
+    name: aqara_motion
+    state_topic: "zigbee2mqtt/aqara_motion"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+  - platform: "mqtt"
+    name: aqara_motion2
+    state_topic: "zigbee2mqtt/aqara_motion2"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_on: true
+    payload_off: false
+    value_template: "{{ value_json.occupancy }}"
+    device_class: "motion"
+
+light:
+  - platform: "mqtt"
+    name: tradfri_light
+    state_topic: "zigbee2mqtt/tradfri_light"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    brightness: true
+    schema: "json"
+    command_topic: "zigbee2mqtt/tradfri_light/set"
+  - platform: flux_led
+    devices:
+      192.168.1.122:
+        name: lightstrip
+        mode: 'rgb'
+
+switch:
+  - platform: mqtt
+    name: "karfiol"
+    icon: "mdi:power-socket-de"
+    state_topic: "stat/shp/POWER"
+    command_topic: "cmnd/shp/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    availability_topic: "tele/shp/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 1
+  - platform: mqtt
+    name: "kelbimbo"
+    icon: "mdi:power-socket-de"
+    state_topic: "stat/powerstrip/POWER"
+    command_topic: "cmnd/powerstrip/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    availability_topic: "tele/powerstrip/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 1
+  # Xiaomi Air Purifier 2S
+  - platform: template
+    switches:
+      xiaomi_airpurifier_led:
+        friendly_name: "LED"
+        value_template: "{{ is_state_attr('fan.xiaomi_miio_device', 'led', true) }}"
+        turn_on:
+          service: xiaomi_miio.fan_set_led_on
+          data:
+            entity_id: fan.xiaomi_miio_device
+        turn_off:
+          service: xiaomi_miio.fan_set_led_off
+          data:
+            entity_id: fan.xiaomi_miio_device
+        icon_template: "mdi:lightbulb-outline"
+      xiaomi_airpurifier_child_lock:
+        friendly_name: "Child lock"
+        value_template: "{{ is_state_attr('fan.xiaomi_miio_device', 'child_lock', true) }}"
+        turn_on:
+          service: xiaomi_miio.fan_set_child_lock_on
+          data:
+            entity_id: fan.xiaomi_miio_device
+        turn_off:
+          service: xiaomi_miio.fan_set_child_lock_off
+          data:
+            entity_id: fan.xiaomi_miio_device
+        icon_template: "mdi:lock-outline"
+      xiaomi_airpurifier_buzzer:
+        friendly_name: "Buzzer"
+        value_template: "{{ is_state_attr('fan.xiaomi_miio_device', 'buzzer', true) }}"
+        turn_on:
+          service: xiaomi_miio.fan_set_buzzer_on
+          data:
+            entity_id: fan.xiaomi_miio_device
+        turn_off:
+          service: xiaomi_miio.fan_set_buzzer_off
+          data:
+            entity_id: fan.xiaomi_miio_device
+        icon_template: "mdi:volume-high"
+  
+# Xiaomi Air Purifier 2S
+input_select:
+  xiaomi_airpurifier_mode:
+    name: Mode
+    options:
+      - Auto
+      - Silent
+      - Favorite
+    icon: "mdi:animation-outline"
+
+input_number:
+  xiaomi_airpurifier_favorite_level:
+    name: "Favorite level"
+    initial: 0
+    min: 0
+    max: 14
+    step: 1
+    icon: "mdi:weather-windy"

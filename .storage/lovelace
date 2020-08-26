@@ -1,0 +1,732 @@
+{
+    "data": {
+        "config": {
+            "theme": "dark",
+            "title": "Home",
+            "views": [
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "zone.home",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:power",
+                                            "icon_height": "40px",
+                                            "name": "Shutdown",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "hassio.host_shutdown"
+                                            },
+                                            "type": "entity-button"
+                                        },
+                                        {
+                                            "entity": "zone.home",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:sync",
+                                            "icon_height": "40px",
+                                            "name": "Reboot",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "hassio.host_reboot"
+                                            },
+                                            "type": "entity-button"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "switch.kelbimbo",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "icon_height": "40px",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "entity-button"
+                                        },
+                                        {
+                                            "entity": "switch.zeller",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "icon_height": "40px",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "entity-button"
+                                        },
+                                        {
+                                            "entity": "switch.karfiol",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "icon": "mdi:power-socket-de",
+                                            "icon_height": "40px",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "button"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "zone.home",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:server-network",
+                                            "icon_height": "40px",
+                                            "name": "Transmission",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "url",
+                                                "url_path": "http://192.168.1.27:9091/"
+                                            },
+                                            "type": "entity-button"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "device_tracker.david"
+                                },
+                                {
+                                    "entity": "device_tracker.niki"
+                                }
+                            ],
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.daily_price"
+                                },
+                                {
+                                    "entity": "sensor.aws_monthly_cost"
+                                },
+                                {
+                                    "entity": "sensor.predator_battery"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.eur"
+                                },
+                                {
+                                    "entity": "sensor.usd"
+                                },
+                                {
+                                    "entity": "sensor.gbp"
+                                }
+                            ],
+                            "type": "glance"
+                        },
+                        {
+                            "entity": "sensor.daily_price",
+                            "graph": "line",
+                            "hours_to_show": 240,
+                            "type": "sensor"
+                        }
+                    ],
+                    "icon": "mdi:home",
+                    "path": "default_view",
+                    "title": "",
+                    "type": "vertical-stack"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "entity": "sensor.disk_use",
+                                    "type": "sensor"
+                                },
+                                {
+                                    "entity": "sensor.disk_use_config_beton",
+                                    "type": "sensor"
+                                },
+                                {
+                                    "entity": "sensor.home_assistant_v2_db",
+                                    "type": "sensor"
+                                },
+                                {
+                                    "entity": "sensor.local_ip",
+                                    "type": "sensor"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entity": "sensor.rpi_cpu_temp",
+                            "max": 100,
+                            "min": 0,
+                            "name": "CPU temp",
+                            "severity": {
+                                "green": 50,
+                                "red": 70,
+                                "yellow": 60
+                            },
+                            "theme": "Backend-selected",
+                            "type": "gauge"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.transmission_status"
+                                        },
+                                        {
+                                            "entity": "sensor.transmission_down_speed"
+                                        }
+                                    ],
+                                    "type": "entities"
+                                },
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.ncore_daily_rank"
+                                        },
+                                        {
+                                            "entity": "sensor.ncore_active"
+                                        },
+                                        {
+                                            "entity": "sensor.ncore_possible_hit_n_run"
+                                        }
+                                    ],
+                                    "type": "glance"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ],
+                    "icon": "mdi:raspberry-pi",
+                    "panel": false,
+                    "path": "rpi",
+                    "title": "Raspberry"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "card": {
+                                        "title": "Zeller",
+                                        "type": "glance"
+                                    },
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.zeller_watts"
+                                        },
+                                        {
+                                            "entity": "sensor.zeller_today_kwh"
+                                        },
+                                        {
+                                            "entity": "sensor.yesterday_consumption_zeller"
+                                        }
+                                    ],
+                                    "show_empty": false,
+                                    "state_filter": [
+                                        {
+                                            "operator": "regex",
+                                            "value": "[^unknown]"
+                                        }
+                                    ],
+                                    "type": "entity-filter"
+                                },
+                                {
+                                    "card": {
+                                        "title": "Kelbimbo",
+                                        "type": "glance"
+                                    },
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.kelbimbo_current"
+                                        },
+                                        {
+                                            "entity": "sensor.kelbimbo_today"
+                                        },
+                                        {
+                                            "entity": "sensor.yesterday_consumption_kelbimbo"
+                                        }
+                                    ],
+                                    "show_empty": false,
+                                    "show_icon": false,
+                                    "state_filter": [
+                                        {
+                                            "operator": "regex",
+                                            "value": "[^unknown]"
+                                        }
+                                    ],
+                                    "type": "entity-filter"
+                                },
+                                {
+                                    "card": {
+                                        "title": "Karfiol",
+                                        "type": "glance"
+                                    },
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.karfiol_current"
+                                        },
+                                        {
+                                            "entity": "sensor.karfiol_today"
+                                        },
+                                        {
+                                            "entity": "sensor.yesterday_consumption_karfiol"
+                                        }
+                                    ],
+                                    "show_empty": false,
+                                    "show_icon": false,
+                                    "state_filter": [
+                                        {
+                                            "operator": "regex",
+                                            "value": "[^unknown]"
+                                        }
+                                    ],
+                                    "type": "entity-filter"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "light.lightstrip"
+                                },
+                                {
+                                    "entity": "light.tradfri_light"
+                                },
+                                {
+                                    "entity": "light.living_room"
+                                }
+                            ],
+                            "type": "glance"
+                        }
+                    ],
+                    "icon": "mdi:power-plug",
+                    "path": "power",
+                    "title": "Power"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.aqara_door"
+                                },
+                                {
+                                    "entity": "sensor.aqara_door_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_door_linkquality"
+                                }
+                            ],
+                            "show_icon": true,
+                            "show_name": false,
+                            "title": "Balcony door",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.aqara_door2"
+                                },
+                                {
+                                    "entity": "sensor.aqara_door2_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_door2_linkquality"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Livingroom window",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.aqara_door3"
+                                },
+                                {
+                                    "entity": "sensor.aqara_door3_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_door3_linkquality"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Bedroom window",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.aqara_motion"
+                                },
+                                {
+                                    "entity": "sensor.aqara_motion_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_motion_illuminance"
+                                },
+                                {
+                                    "entity": "sensor.aqara_motion_lqi"
+                                }
+                            ],
+                            "title": "Hall",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "binary_sensor.aqara_motion2"
+                                },
+                                {
+                                    "entity": "sensor.aqara_motion2_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_motion2_illuminance"
+                                },
+                                {
+                                    "entity": "sensor.aqara_motion2_lqi"
+                                }
+                            ],
+                            "title": "Livingroom",
+                            "type": "glance"
+                        }
+                    ],
+                    "icon": "mdi:motion-sensor",
+                    "path": "motion",
+                    "title": "Motion"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.aqara_temp_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp_humidity"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp_temperature"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp_pressure"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp_linkquality"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Aqara - Bedroom",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.aqara_temp2_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp2_humidity"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp2_temperature"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp2_pressure"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp2_linkquality"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Aqara - Living room",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.aqara_temp3_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp3_humidity"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp3_temperature"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp3_pressure"
+                                },
+                                {
+                                    "entity": "sensor.aqara_temp3_linkquality"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Aqara - Balcony",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.rpi_temperature"
+                                },
+                                {
+                                    "entity": "sensor.rpi_humidity"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "RPi",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.xiaomi_airpurifier_temp"
+                                },
+                                {
+                                    "entity": "sensor.xiaomi_airpurifier_humidity"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Air purifier",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.nodemcu_temp"
+                                },
+                                {
+                                    "entity": "sensor.nodemcu_humidity"
+                                },
+                                {
+                                    "entity": "sensor.nodemcu_pressure"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "NodeMCU - Balcony",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.mijia_temp_temperature"
+                                },
+                                {
+                                    "entity": "sensor.mijia_temp_humidity"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Mijia",
+                            "type": "glance"
+                        }
+                    ],
+                    "icon": "mdi:home-thermometer-outline",
+                    "path": "thermo",
+                    "title": "Thermo"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.aqara_cube_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_cube_action"
+                                },
+                                {
+                                    "entity": "sensor.aqara_cube_angle"
+                                },
+                                {
+                                    "entity": "sensor.aqara_cube_side"
+                                },
+                                {
+                                    "entity": "sensor.aqara_cube_linkquality"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Cube Controller",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.mijia_light_lux"
+                                },
+                                {
+                                    "entity": "sensor.mijia_light_illuminance"
+                                },
+                                {
+                                    "entity": "sensor.mijia_light_battery"
+                                },
+                                {
+                                    "entity": "sensor.mijia_light_linkquality"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Light sensor",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.aqara_opple_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_opple_action"
+                                },
+                                {
+                                    "entity": "sensor.aqara_opple_linkquality"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Opple Controller",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.aqara_vibration_battery"
+                                },
+                                {
+                                    "entity": "sensor.aqara_vibration_action"
+                                },
+                                {
+                                    "entity": "sensor.aqara_vibration_sensitivity"
+                                },
+                                {
+                                    "entity": "sensor.aqara_vibration_strength"
+                                },
+                                {
+                                    "entity": "sensor.aqara_vibration_linkquality"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "Aqara Vibration",
+                            "type": "glance"
+                        }
+                    ],
+                    "icon": "mdi:remote-tv",
+                    "path": "controllers",
+                    "title": "Controller"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "fan.xiaomi_miio_device"
+                                },
+                                {
+                                    "entity": "input_select.xiaomi_airpurifier_mode"
+                                },
+                                {
+                                    "entity": "input_number.xiaomi_airpurifier_favorite_level"
+                                },
+                                {
+                                    "entity": "sensor.xiaomi_airpurifier_speed"
+                                },
+                                {
+                                    "entity": "sensor.xiaomi_airpurifier_filter_remaining"
+                                },
+                                {
+                                    "entity": "sensor.xiaomi_airpurifier_air_quality_pm25"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Air Purifier",
+                            "type": "entities"
+                        }
+                    ],
+                    "icon": "mdi:air-conditioner",
+                    "path": "air",
+                    "title": "Air Conditioner"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "aspect_ratio": "50%",
+                            "entity": "camera.yi_cam_1",
+                            "type": "picture-entity"
+                        },
+                        {
+                            "aspect_ratio": "50%",
+                            "entity": "camera.yi_cam_2",
+                            "type": "picture-entity"
+                        }
+                    ],
+                    "icon": "mdi:cctv",
+                    "path": "cam",
+                    "title": "Cam"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.airquality"
+                                },
+                                {
+                                    "entity": "sensor.elmu_kwh_price"
+                                }
+                            ],
+                            "title": "Misc",
+                            "type": "entities"
+                        }
+                    ],
+                    "icon": "mdi:tools",
+                    "path": "misc",
+                    "title": "Misc"
+                }
+            ]
+        }
+    },
+    "key": "lovelace",
+    "version": 1
+}
