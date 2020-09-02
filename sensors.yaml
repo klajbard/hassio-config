@@ -409,11 +409,13 @@
   state_topic: "tele/shp/SENSOR"
   value_template: '{{ value_json.ENERGY.Power }}'
   unit_of_measurement: "W"
+  icon: "mdi:flash"
 - platform: mqtt
   name: karfiol_today
   state_topic: "tele/shp/SENSOR"
   value_template: '{{ value_json.ENERGY.Today | float * 1000 | int }}'
   unit_of_measurement: "Wh"
+  icon: "mdi:flash"
 
 - platform: "mqtt"
   name: 'Predator battery'
