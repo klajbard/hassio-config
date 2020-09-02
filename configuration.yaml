@@ -28,7 +28,9 @@ fan:
 logbook:
 
 logger:
-  default: debug
+  default: info
+  logs:
+    homeassistant.core: debug
 
 sun:
 

@@ -26,3 +26,6 @@ sensor.yesterday_consumption_kelbimbo:
 sensor.yesterday_consumption_karfiol:
   friendly_name: "karfiol yesterday consumption"
   icon: "mdi:flash"
+sensor.yesterday_consumption_karfiol:
+  friendly_name: "karfiol yesterday consumption"
+  icon: "mdi:flash"

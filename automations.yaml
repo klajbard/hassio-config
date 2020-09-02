@@ -2,6 +2,7 @@
 # Karfiol - BW-SHP6
 ###################
 - alias: "Save karfiol daily consumption"
+  id: 'd91a9dfcfaee2e1e9de9faa15de028d7'
   trigger:
     platform: time_pattern
     minutes: /30
@@ -12,6 +13,7 @@
     service: shell_command.today_consumption_karfiol
 
 - alias: "Get karfiol yesterday consumption"
+  id: '98c523d3789a072fb4ec8eda39214925'
   trigger:
     platform: time_pattern
     minutes: /60
@@ -19,6 +21,7 @@
     service: shell_command.get_yesterday_consumption_karfiol
 
 - alias: "Notify karfiol consumption"
+  id: '0ff84c1ea73bccbf914ff670a958bee3'
   trigger:
     platform: time
     at: '10:00:00'
@@ -32,6 +35,7 @@
 # Zeller - TP-Link HS110
 ###################
 - alias: "Save zeller daily consumption"
+  id: '4a67142c2b927264ce92e8aac43eba6e'
   trigger:
     platform: time_pattern
     minutes: /30
@@ -42,6 +46,7 @@
     service: shell_command.today_consumption_zeller
 
 - alias: "Get zeller yesterday consumption"
+  id: '0733884f5742c705969ad8846f1c4dab'
   trigger:
     platform: time_pattern
     minutes: /60
@@ -49,6 +54,7 @@
     service: shell_command.get_yesterday_consumption_zeller
 
 - alias: "Notify zeller consumption"
+  id: '60c4456bda9f9327045435588d8981a1'
   trigger:
     platform: time
     at: '10:00:00'
@@ -62,6 +68,7 @@
 # Kelbimbo - Sonoff Pow R2
 ###################
 - alias: "Save kelbimbo daily consumption"
+  id: '8c18189a511aa5b324526b66def02f6a'
   trigger:
     platform: time_pattern
     minutes: /30
@@ -72,6 +79,7 @@
     service: shell_command.today_consumption_kelbimbo
 
 - alias: "Get kelbimbo yesterday consumption"
+  id: 'cd99b62d3965f50466c3bb8b2a42bab2'
   trigger:
     platform: time_pattern
     minutes: /60
@@ -79,6 +87,7 @@
     service: shell_command.get_yesterday_consumption_kelbimbo
 
 - alias: "Notify kelbimbo consumption"
+  id: '4bcb21e6965c37a046d2a4094267d421'
   trigger:
     platform: time
     at: '10:00:00'
@@ -92,6 +101,7 @@
 # Power saving
 ###################
 - alias: "Shutdown zeller if not used"
+  id: '6aec65cab2924c63592b04b3af477d40'
   trigger:
     platform: numeric_state
     entity_id: sensor.zeller_watts
@@ -103,6 +113,7 @@
     entity_id: switch.zeller
 
 - alias: "Shutdown kelbimbo if not used"
+  id: 'bb910f8fbd16d8f1a1cc11ccd6ee8a8a'
   trigger:
     platform: numeric_state
     entity_id: sensor.kelbimbo_current
@@ -117,6 +128,7 @@
 # Opple
 ###################
 - alias: "Opple - zeller toggle"
+  id: '7f25b6a804855544c7d3b0a612a15a19'
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/aqara_opple
@@ -128,6 +140,7 @@
     entity_id: switch.zeller
 
 - alias: "Opple - kelbimbo toggle"
+  id: 'a59ad841ddb6359aead69093e0629435'
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/aqara_opple
@@ -139,6 +152,7 @@
     entity_id: switch.kelbimbo
 
 - alias: "Opple - humidifier toggle"
+  id: 'b21e11bec8530a810c555bd7b80925f6'
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/aqara_opple
@@ -150,6 +164,7 @@
     entity_id: fan.xiaomi_miio_device
 
 - alias: "Opple - tradfri bulb toggle"
+  id: '6a3cb61951fe27c5c47cc17c76589578'
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/aqara_opple
@@ -164,6 +179,7 @@
 # Air Purifier
 ###################
 - alias: "Air Purifier mode change"
+  id: 'bc8ef35ad9177454f6c27c77fd7bd52a'
   trigger:
     entity_id: input_select.xiaomi_airpurifier_mode
     platform: state
@@ -174,6 +190,7 @@
       speed: '{{ states.input_select.xiaomi_airpurifier_mode.state }}'
 
 - alias: "Air Purifier mode changed"
+  id: '2f23ac3b961d6759163ae41a2a9c242b'
   trigger:
     platform: state
     entity_id: fan.xiaomi_miio_device
@@ -184,6 +201,7 @@
       option: '{{ states.fan.xiaomi_miio_device.attributes.speed }}'
 
 - alias: "Air Purifier favorite level change"
+  id: '1c648470f2c3ddea88fd7bece73afd1a'
   trigger:
     entity_id: input_number.xiaomi_airpurifier_favorite_level
     platform: state
@@ -194,6 +212,7 @@
       level: '{{ states.input_number.xiaomi_airpurifier_favorite_level.state | int }}'
 
 - alias: "Air Purifier favorite level changed"
+  id: '67f48fa64f07a69bc557e96a45c0e7bf'
   trigger:
     platform: state
     entity_id: fan.xiaomi_miio_device
@@ -207,6 +226,7 @@
 # Torrents
 ###################
 - alias: "Torrents started"
+  id: '686b317da22d0db492c60b570414b698'
   trigger:
     platform: event
     event_type: transmission_started_torrent
@@ -217,6 +237,7 @@
       message: Started downloading of {{trigger.event.data.name}}
 
 - alias: "Torrents done"
+  id: '441ec1de12f22d88fb2332ffefa6d439'
   trigger:
     platform: event
     event_type: transmission_downloaded_torrent
