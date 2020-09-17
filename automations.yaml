@@ -98,6 +98,36 @@
       message: 'Kelbimbo yesterday consumption: {{ states(''sensor.yesterday_consumption_kelbimbo'')}}Wh'
 
 ###################
+# Articsoka - Sonoff Pow R2
+###################
+- alias: "Save articsoka daily consumption"
+  trigger:
+    platform: time_pattern
+    minutes: /30
+  condition:
+    condition: template
+    value_template: '{{ (as_timestamp(now()) - as_timestamp(states.sensor.articsoka_today.last_changed)) < 86400 }}'
+  action:
+    service: shell_command.today_consumption_articsoka
+
+- alias: "Get articsoka yesterday consumption"
+  trigger:
+    platform: time_pattern
+    minutes: /60
+  action:
+    service: shell_command.get_yesterday_consumption_articsoka
+
+- alias: "Notify articsoka consumption"
+  trigger:
+    platform: time
+    at: '10:00:00'
+  action:
+    service: notify.slack_bot_consumption
+    data_template:
+      title: Consumption
+      message: 'Articsoka yesterday consumption: {{ states(''sensor.yesterday_consumption_articsoka'')}}Wh'
+
+###################
 # Power saving
 ###################
 - alias: "Shutdown zeller if not used"

@@ -94,6 +94,8 @@ shell_command:
     get_yesterday_consumption_kelbimbo: 'sh /config/scripts/get_yesterday_cons.sh kelbimbo > /config/log/kelbimbo/yesterday'
     today_consumption_karfiol: 'sh /config/scripts/cons.sh karfiol {{states("sensor.karfiol_today")}}'
     get_yesterday_consumption_karfiol: 'sh /config/scripts/get_yesterday_cons.sh karfiol > /config/log/karfiol/yesterday'
+    today_consumption_articsoka: 'sh /config/scripts/cons.sh articsoka {{states("sensor.articsoka_today")}}'
+    get_yesterday_consumption_articsoka: 'sh /config/scripts/get_yesterday_cons.sh articsoka > /config/log/articsoka/yesterday'
 
 ####################
 # Notifications_
@@ -207,6 +209,17 @@ light:
         mode: 'rgb'
 
 switch:
+  - platform: mqtt
+    name: "articsoka"
+    icon: "mdi:power-socket-de"
+    state_topic: "stat/powr2/POWER"
+    command_topic: "cmnd/powr2/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    availability_topic: "tele/powr2/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 1
   - platform: mqtt
     name: "karfiol"
     icon: "mdi:power-socket-de"
