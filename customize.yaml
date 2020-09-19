@@ -12,20 +12,28 @@ device_tracker.niki:
 sensor.daily_price:
   icon: "mdi:home-currency-usd"
 sensor.kelbimbo_current:
-  friendly_name: "kelbimbo current consumption"
+  friendly_name: "Kelbimbo current"
 sensor.kelbimbo_today:
-  friendly_name: "kelbimbo today consumption"
+  friendly_name: "Kelbimbo today"
+sensor.karfiol_current:
+  friendly_name: "Karfiol current"
+sensor.karfiol_today:
+  friendly_name: "Karfiol today"
 switch.zeller:
   icon: "mdi:power-socket-de"
 sensor.yesterday_consumption_zeller:
-  friendly_name: "zeller yesterday consumption"
+  friendly_name: "Zeller yesterday"
   icon: "mdi:flash"
 sensor.yesterday_consumption_kelbimbo:
-  friendly_name: "kelbimbo yesterday consumption"
+  friendly_name: "Kelbimbo yesterday"
   icon: "mdi:flash"
 sensor.yesterday_consumption_karfiol:
-  friendly_name: "karfiol yesterday consumption"
+  friendly_name: "Karfiol yesterday"
   icon: "mdi:flash"
-sensor.yesterday_consumption_karfiol:
-  friendly_name: "karfiol yesterday consumption"
+sensor.articsoka_current:
+  friendly_name: "Articsoka current"
+sensor.articsoka_today:
+  friendly_name: "Articsoka today"
+sensor.yesterday_consumption_articsoka:
+  friendly_name: "Articsoka yesterday"
   icon: "mdi:flash"

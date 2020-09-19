@@ -26,6 +26,12 @@
   scan_interval: 1800 # 30 minutes
   value_template: '{{ value | int }}'
   unit_of_measurement: 'Wh'
+- platform: file
+  name: yesterday_consumption_articsoka
+  file_path: /config/log/articsoka/yesterday
+  scan_interval: 1800 # 30 minutes
+  value_template: '{{ value | int }}'
+  unit_of_measurement: 'Wh'
 
 ####################
 # MQTT
