@@ -253,6 +253,69 @@
       value: '{{ states.fan.xiaomi_miio_device.attributes.favorite_level }}'
 
 ###################
+# Air Humidifier
+###################
+- alias: "Air Humidifier mode change"
+  trigger:
+    entity_id: input_select.xiaomi_humidifier_mode
+    platform: state
+  action:
+    service: fan.set_speed
+    data_template:
+      entity_id: fan.xiaomi_miio_device_2
+      speed: '{{ states.input_select.xiaomi_humidifier_mode.state }}'
+
+- alias: "Air Humidifier mode changed"
+  trigger:
+    platform: state
+    entity_id: fan.xiaomi_miio_device_2
+  action:
+    service: input_select.select_option
+    entity_id: input_select.xiaomi_humidifier_mode
+    data_template:
+      option: '{{ states.fan.xiaomi_miio_device_2.attributes.speed }}'
+
+- alias: "Air Humidifier target humidity change"
+  trigger:
+    entity_id: input_number.xiaomi_humidifier_target_humidity
+    platform: state
+  action:
+    service: xiaomi_miio.fan_set_target_humidity
+    data_template:
+      entity_id: fan.xiaomi_miio_device_2
+      level: '{{ states.input_number.xiaomi_humidifier_target_humidity.state | int }}'
+
+- alias: "Air Humidifier target humidity changed"
+  trigger:
+    platform: state
+    entity_id: fan.xiaomi_miio_device_2
+  action:
+    service: input_number.set_value
+    entity_id: input_number.xiaomi_humidifier_target_humidity
+    data_template:
+      value: '{{ states.fan.xiaomi_miio_device_2.attributes.target_humidity }}'
+
+- alias: "Air Humidifier LED brightness change"
+  trigger:
+    entity_id: input_select.xiaomi_humidifier_brightness
+    platform: state
+  action:
+    service: xiaomi_miio.fan_set_led_brightness
+    data_template:
+      entity_id: fan.xiaomi_miio_device_2
+      level: '{{ states.input_select.xiaomi_humidifier_brightness.state | int }}'
+
+- alias: "Air Humidifier LED brightness changed"
+  trigger:
+    platform: state
+    entity_id: fan.xiaomi_miio_device_2
+  action:
+    service: input_select.select_option
+    entity_id: input_select.xiaomi_humidifier_brightness
+    data_template:
+      value: '{{ states.fan.xiaomi_miio_device_2.attributes.led_brightness }}'
+
+###################
 # Torrents
 ###################
 - alias: "Torrents started"
