@@ -32,7 +32,7 @@
                                             "hold_action": {
                                                 "action": "none"
                                             },
-                                            "icon": "mdi:sync",
+                                            "icon": "mdi:restart",
                                             "icon_height": "40px",
                                             "name": "Reboot",
                                             "show_icon": true,
@@ -40,6 +40,22 @@
                                             "tap_action": {
                                                 "action": "call-service",
                                                 "service": "hassio.host_reboot"
+                                            },
+                                            "type": "entity-button"
+                                        },
+                                        {
+                                            "entity": "zone.home",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:restart",
+                                            "icon_height": "40px",
+                                            "name": "Restart",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "homeassistant.restart"
                                             },
                                             "type": "entity-button"
                                         }
@@ -87,6 +103,20 @@
                                                 "action": "toggle"
                                             },
                                             "type": "button"
+                                        },
+                                        {
+                                            "entity": "switch.articsoka",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "icon_height": "40px",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "show_state": false,
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "button"
                                         }
                                     ],
                                     "type": "horizontal-stack"
@@ -106,6 +136,22 @@
                                             "tap_action": {
                                                 "action": "url",
                                                 "url_path": "http://192.168.1.27:9091/"
+                                            },
+                                            "type": "entity-button"
+                                        },
+                                        {
+                                            "entity": "zone.home",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:router-wireless",
+                                            "icon_height": "40px",
+                                            "name": "Router",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "url",
+                                                "url_path": "http://192.168.1.1/"
                                             },
                                             "type": "entity-button"
                                         }
@@ -310,6 +356,32 @@
                                         },
                                         {
                                             "entity": "sensor.yesterday_consumption_karfiol"
+                                        }
+                                    ],
+                                    "show_empty": false,
+                                    "show_icon": false,
+                                    "state_filter": [
+                                        {
+                                            "operator": "regex",
+                                            "value": "[^unknown]"
+                                        }
+                                    ],
+                                    "type": "entity-filter"
+                                },
+                                {
+                                    "card": {
+                                        "title": "Karfiol",
+                                        "type": "glance"
+                                    },
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.articsoka_current"
+                                        },
+                                        {
+                                            "entity": "sensor.articsoka_today"
+                                        },
+                                        {
+                                            "entity": "sensor.yesterday_consumption_articsoka"
                                         }
                                     ],
                                     "show_empty": false,
