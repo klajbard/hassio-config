@@ -283,7 +283,7 @@
     service: xiaomi_miio.fan_set_target_humidity
     data_template:
       entity_id: fan.xiaomi_miio_device_2
-      level: '{{ states.input_number.xiaomi_humidifier_target_humidity.state | int }}'
+      humidity: '{{ states.input_number.xiaomi_humidifier_target_humidity.state | int }}'
 
 - alias: "Air Humidifier target humidity changed"
   trigger:
@@ -297,21 +297,21 @@
 
 - alias: "Air Humidifier LED brightness change"
   trigger:
-    entity_id: input_select.xiaomi_humidifier_brightness
+    entity_id: input_number.xiaomi_humidifier_brightness
     platform: state
   action:
     service: xiaomi_miio.fan_set_led_brightness
     data_template:
       entity_id: fan.xiaomi_miio_device_2
-      level: '{{ states.input_select.xiaomi_humidifier_brightness.state | int }}'
+      brightness: '{{ states.input_number.xiaomi_humidifier_brightness.state | int }}'
 
 - alias: "Air Humidifier LED brightness changed"
   trigger:
     platform: state
     entity_id: fan.xiaomi_miio_device_2
   action:
-    service: input_select.select_option
-    entity_id: input_select.xiaomi_humidifier_brightness
+    service: input_number.set_value
+    entity_id: input_number.xiaomi_humidifier_brightness
     data_template:
       value: '{{ states.fan.xiaomi_miio_device_2.attributes.led_brightness }}'
 
