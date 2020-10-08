@@ -181,8 +181,7 @@
   - service: switch.toggle
     entity_id: switch.kelbimbo
 
-- alias: "Opple - humidifier toggle"
-  id: 'b21e11bec8530a810c555bd7b80925f6'
+- alias: "Opple - articsoka toggle"
   trigger:
     platform: mqtt
     topic: zigbee2mqtt/aqara_opple
@@ -190,8 +189,8 @@
     condition: template
     value_template: '{{ trigger.payload_json.action == "button_3_single"}}'
   action:
-  - service: fan.toggle
-    entity_id: fan.xiaomi_miio_device
+  - service: switch.toggle
+    entity_id: switch.articsoka
 
 - alias: "Opple - tradfri bulb toggle"
   id: '6a3cb61951fe27c5c47cc17c76589578'
@@ -204,6 +203,29 @@
   action:
   - service: light.toggle
     entity_id: light.tradfri_light
+
+- alias: "Opple - purifier toggle"
+  id: 'b21e11bec8530a810c555bd7b80925f6'
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/aqara_opple
+  condition:
+    condition: template
+    value_template: '{{ trigger.payload_json.action == "button_5_single"}}'
+  action:
+  - service: fan.toggle
+    entity_id: fan.xiaomi_miio_device
+
+- alias: "Opple - humidifier toggle"
+  trigger:
+    platform: mqtt
+    topic: zigbee2mqtt/aqara_opple
+  condition:
+    condition: template
+    value_template: '{{ trigger.payload_json.action == "button_6_single"}}'
+  action:
+  - service: fan.toggle
+    entity_id: fan.xiaomi_miio_device_2
 
 ###################
 # Air Purifier
