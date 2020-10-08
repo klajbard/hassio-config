@@ -287,7 +287,7 @@ switch:
   # Xiaomi Humidifier
   - platform: template
     switches:
-      xiaomi_airpurifier_child_lock:
+      xiaomi_humidifier_child_lock:
         friendly_name: "Child lock"
         value_template: "{{ is_state_attr('fan.xiaomi_miio_device_2', 'child_lock', true) }}"
         turn_on:
@@ -299,7 +299,7 @@ switch:
           data:
             entity_id: fan.xiaomi_miio_device_2
         icon_template: "mdi:lock-outline"
-      xiaomi_airpurifier_buzzer:
+      xiaomi_humidifier_buzzer:
         friendly_name: "Buzzer"
         value_template: "{{ is_state_attr('fan.xiaomi_miio_device_2', 'buzzer', true) }}"
         turn_on:
@@ -311,7 +311,7 @@ switch:
           data:
             entity_id: fan.xiaomi_miio_device_2
         icon_template: "mdi:volume-high"
-      xiaomi_airpurifier_dry:
+      xiaomi_humidifier_dry:
         friendly_name: "dry"
         value_template: "{{ is_state_attr('fan.xiaomi_miio_device_2', 'dry', true) }}"
         turn_on:
@@ -324,16 +324,6 @@ switch:
             entity_id: fan.xiaomi_miio_device_2
         icon_template: "mdi:water-percent-alert"
 
-# Xiaomi Air Purifier 2S
-input_select:
-  xiaomi_airpurifier_mode:
-    name: Mode
-    options:
-      - Auto
-      - Silent
-      - Favorite
-    icon: "mdi:animation-outline"
-
 input_number:
   xiaomi_airpurifier_favorite_level:
     name: "Favorite level"
@@ -342,9 +332,29 @@ input_number:
     max: 14
     step: 1
     icon: "mdi:weather-windy"
+  xiaomi_humidifier_target_humidity:
+    name: "Target humidity"
+    initial: 70
+    min: 30
+    max: 80
+    step: 10
+    icon: "mdi:water-percent"
+  xiaomi_humidifier_brightness:
+    name: "LED Brightness"
+    initial: 1
+    min: 0
+    max: 2
+    step: 1 
+    icon: "mdi:brightness-5"
 
-# Xiaomi Humidifier
 input_select:
+  xiaomi_airpurifier_mode:
+    name: Mode
+    options:
+      - Auto
+      - Silent
+      - Favorite
+    icon: "mdi:animation-outline"
   xiaomi_humidifier_mode:
     name: Mode
     options:
@@ -353,19 +363,3 @@ input_select:
       - High
       - Auto
     icon: "mdi:animation-outline"
-  xiaomi_humidifier_mode:
-    name: Brightness
-    options:
-      - 0
-      - 1
-      - 2
-    icon: "mdi:brightness-5"
-
-input_number:
-  xiaomi_humidifier_target_humidity:
-    name: "Target humidity"
-    initial: 70
-    min: 30
-    max: 80
-    step: 10
-    icon: "mdi:water-percent"

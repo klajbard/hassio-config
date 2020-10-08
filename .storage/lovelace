@@ -607,17 +607,14 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "sensor.nodemcu_temp"
+                                    "entity": "sensor.xiaomi_humidifier_temp"
                                 },
                                 {
-                                    "entity": "sensor.nodemcu_humidity"
-                                },
-                                {
-                                    "entity": "sensor.nodemcu_pressure"
+                                    "entity": "sensor.xiaomi_humidifier_humidity"
                                 }
                             ],
                             "show_name": false,
-                            "title": "NodeMCU - Balcony",
+                            "title": "Air humidifier",
                             "type": "glance"
                         },
                         {
@@ -631,6 +628,22 @@
                             ],
                             "show_name": false,
                             "title": "Mijia",
+                            "type": "glance"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.nodemcu_temp"
+                                },
+                                {
+                                    "entity": "sensor.nodemcu_humidity"
+                                },
+                                {
+                                    "entity": "sensor.nodemcu_pressure"
+                                }
+                            ],
+                            "show_name": false,
+                            "title": "NodeMCU - Balcony",
                             "type": "glance"
                         }
                     ],
@@ -751,6 +764,34 @@
                             ],
                             "show_header_toggle": false,
                             "title": "Air Purifier",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "fan.xiaomi_miio_device_2"
+                                },
+                                {
+                                    "entity": "input_select.xiaomi_humidifier_mode"
+                                },
+                                {
+                                    "entity": "input_number.xiaomi_humidifier_brightness"
+                                },
+                                {
+                                    "entity": "input_number.xiaomi_humidifier_target_humidity"
+                                },
+                                {
+                                    "entity": "sensor.xiaomi_humidifier_speed"
+                                },
+                                {
+                                    "entity": "sensor.xiaomi_humidifier_depth"
+                                },
+                                {
+                                    "entity": "sensor.xiaomi_humidifier_use_time"
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Humidifier",
                             "type": "entities"
                         }
                     ],

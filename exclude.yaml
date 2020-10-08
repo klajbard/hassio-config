@@ -88,9 +88,9 @@
     - switch.xiaomi_airpurifier_led
     - sensor.xiaomi_airpurifier_speed
     # Xiaomi Humidifier
-    - switch.xiaomi_airpurifier_buzzer
-    - switch.xiaomi_airpurifier_child_lock
-    - switch.xiaomi_airpurifier_dry
+    - switch.xiaomi_humidifier_buzzer
+    - switch.xiaomi_humidifier_child_lock
+    - switch.xiaomi_humidifier_dry
     - sensor.xiaomi_humidifier_speed
     # Currencies
     - sensor.eur
