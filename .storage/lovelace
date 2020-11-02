@@ -1,4 +1,6 @@
 {
+    "version": 1,
+    "key": "lovelace",
     "data": {
         "config": {
             "theme": "dark",
@@ -210,8 +212,7 @@
                     ],
                     "icon": "mdi:home",
                     "path": "default_view",
-                    "title": "",
-                    "type": "vertical-stack"
+                    "title": ""
                 },
                 {
                     "badges": [],
@@ -839,7 +840,5 @@
                 }
             ]
         }
-    },
-    "key": "lovelace",
-    "version": 1
+    }
 }
