@@ -206,7 +206,7 @@
                         {
                             "entity": "sensor.daily_price",
                             "graph": "line",
-                            "hours_to_show": 240,
+                            "hours_to_show": 96,
                             "type": "sensor"
                         }
                     ],
