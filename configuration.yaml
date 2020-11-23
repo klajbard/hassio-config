@@ -22,10 +22,10 @@ history:
 
 fan:
   - platform: xiaomi_miio
-    host: 192.168.1.228
+    host: 192.168.1.182
     token: !secret xiaomi_token
   - platform: xiaomi_miio
-    host: 192.168.1.155
+    host: 192.168.1.247
     token: !secret xiaomi_token_humidifier
 
 logbook:
