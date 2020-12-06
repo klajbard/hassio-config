@@ -29,7 +29,13 @@
     service: notify.slack_bot_consumption
     data_template:
       title: Consumption
-      message: 'karfiol yesterday consumption: {{ states(''sensor.yesterday_consumption_karfiol'')}}Wh'
+      message: ''
+      data:
+        blocks_template:
+          - type: section
+            text:
+              type: mrkdwn
+              text: 'karfiol yesterday consumption: {{ states(''sensor.yesterday_consumption_karfiol'')}}Wh'
 
 ###################
 # Zeller - TP-Link HS110
@@ -62,7 +68,13 @@
     service: notify.slack_bot_consumption
     data_template:
       title: Consumption
-      message: 'Zeller yesterday consumption: {{ states(''sensor.yesterday_consumption_zeller'')}}Wh'
+      message: ''
+      data:
+        blocks_template:
+          - type: section
+            text:
+              type: mrkdwn
+              text: 'Zeller yesterday consumption: {{ states(''sensor.yesterday_consumption_zeller'')}}Wh'
 
 ###################
 # Kelbimbo - Sonoff Pow R2
@@ -95,7 +107,13 @@
     service: notify.slack_bot_consumption
     data_template:
       title: Consumption
-      message: 'Kelbimbo yesterday consumption: {{ states(''sensor.yesterday_consumption_kelbimbo'')}}Wh'
+      message: ''
+      data:
+        blocks_template:
+          - type: section
+            text:
+              type: mrkdwn
+              text: 'Kelbimbo yesterday consumption: {{ states(''sensor.yesterday_consumption_kelbimbo'')}}Wh'
 
 ###################
 # Articsoka - Sonoff Pow R2
@@ -125,7 +143,13 @@
     service: notify.slack_bot_consumption
     data_template:
       title: Consumption
-      message: 'Articsoka yesterday consumption: {{ states(''sensor.yesterday_consumption_articsoka'')}}Wh'
+      message: ''
+      data:
+        blocks_template:
+          - type: section
+            text:
+              type: mrkdwn
+              text: 'Articsoka yesterday consumption: {{ states(''sensor.yesterday_consumption_articsoka'')}}Wh'
 
 ###################
 # Power saving
@@ -349,7 +373,13 @@
     service: notify.slack_bot_transmission
     data_template:
       title: Torrent completed!
-      message: Started downloading of {{trigger.event.data.name}}
+      message: ''
+      data:
+        blocks_template:
+          - type: section
+            text:
+              type: mrkdwn
+              text: 'Started downloading of {{trigger.event.data.name}}'
 
 - alias: "Torrents done"
   id: '441ec1de12f22d88fb2332ffefa6d439'
@@ -360,4 +390,10 @@
     service: notify.slack_bot_transmission
     data_template:
       title: Torrent completed!
-      message: Downloading of {{trigger.event.data.name}} is finished
+      message: ''
+      data:
+        blocks_template:
+          - type: section
+            text:
+              type: mrkdwn
+              text: 'Downloading of {{trigger.event.data.name}} is finished'
