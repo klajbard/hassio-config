@@ -206,10 +206,7 @@ light:
     schema: "json"
     command_topic: "zigbee2mqtt/tradfri_light/set"
   - platform: flux_led
-    devices:
-      192.168.1.122:
-        name: lightstrip
-        mode: 'rgb'
+    automatic_add: true
 
 switch:
   - platform: mqtt

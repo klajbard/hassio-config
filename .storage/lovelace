@@ -401,7 +401,7 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "light.lightstrip"
+                                    "entity": "light.f4cfa211985e_192_168_1_91"
                                 },
                                 {
                                     "entity": "light.tradfri_light"
