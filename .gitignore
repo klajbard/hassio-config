@@ -1,6 +1,5 @@
 .storage/*
 !.storage/lovelace*
-alexa_media*
 beton
 log
 home-assistant.log
