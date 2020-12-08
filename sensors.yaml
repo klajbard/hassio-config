@@ -34,28 +34,6 @@
   unit_of_measurement: 'Wh'
 
 ####################
-# BT sensors
-####################
-- platform: mitemp_bt
-  mac: 'A4:C1:38:02:24:08'
-  name: Mijia Bathroom
-  median: 1
-  timeout: 30
-  monitored_conditions:
-    - temperature
-    - humidity
-    - battery
-- platform: mitemp_bt
-  mac: 'A4:C1:38:4A:A3:02'
-  name: Mijia Tools
-  median: 1
-  timeout: 30
-  monitored_conditions:
-    - temperature
-    - humidity
-    - battery
-
-####################
 # MQTT
 ####################
 #%% NodeMCU BME280
