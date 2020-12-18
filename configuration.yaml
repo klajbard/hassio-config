@@ -232,6 +232,17 @@ switch:
     payload_not_available: "Offline"
     qos: 1
   - platform: mqtt
+    name: "borso"
+    icon: "mdi:power-socket-de"
+    state_topic: "stat/powr_small/POWER"
+    command_topic: "cmnd/powr_small/POWER"
+    payload_on: "ON"
+    payload_off: "OFF"
+    availability_topic: "tele/powr_small/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    qos: 1
+  - platform: mqtt
     name: "kelbimbo"
     icon: "mdi:power-socket-de"
     state_topic: "stat/powerstrip/POWER"
