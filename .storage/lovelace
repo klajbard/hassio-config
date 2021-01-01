@@ -119,6 +119,21 @@
                                                 "action": "toggle"
                                             },
                                             "type": "button"
+                                        },
+                                        {
+                                            "entity": "switch.borso",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "icon": "mdi:power-socket-de",
+                                            "icon_height": "40px",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "button",
+                                            "show_state": false
                                         }
                                     ],
                                     "type": "horizontal-stack"
@@ -137,7 +152,7 @@
                                             "show_name": true,
                                             "tap_action": {
                                                 "action": "url",
-                                                "url_path": "http://192.168.1.27:9091/"
+                                                "url_path": "http://192.168.1.216:9091/"
                                             },
                                             "type": "entity-button"
                                         },
@@ -221,10 +236,6 @@
                             "cards": [
                                 {
                                     "entity": "sensor.disk_use",
-                                    "type": "sensor"
-                                },
-                                {
-                                    "entity": "sensor.disk_use_config_beton",
                                     "type": "sensor"
                                 },
                                 {
