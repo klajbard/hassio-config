@@ -848,6 +848,21 @@
                     "icon": "mdi:tools",
                     "path": "misc",
                     "title": "Misc"
+                },
+                {
+                    "title": "experiment",
+                    "path": "experiment",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "button",
+                            "tap_action": {
+                                "action": "toggle"
+                            },
+                            "entity": "light.desk_lamp",
+                            "name": "Desk Lamp"
+                        }
+                    ]
                 }
             ]
         }

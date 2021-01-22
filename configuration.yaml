@@ -205,6 +205,13 @@ light:
     brightness: true
     schema: "json"
     command_topic: "zigbee2mqtt/tradfri_light/set"
+  - platform: "mqtt"
+    name: desk_lamp
+    state_topic: "light/esp/state"
+    availability_topic: "light/esp/LWT"
+    command_topic: "light/esp/state"
+    payload_on: "on"
+    payload_off: "off"
   - platform: flux_led
     automatic_add: true
 
