@@ -196,6 +196,30 @@ binary_sensor:
     payload_off: false
     value_template: "{{ value_json.occupancy }}"
     device_class: "motion"
+  - platform: "mqtt"
+    state_topic: "zigbee2mqtt/mi_plug"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    value_template: "{{ value_json.consumer_connected }}"
+    payload_on: true
+    payload_off: false
+  - platform: "mqtt"
+    state_topic: "zigbee2mqtt/mi_plug"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    value_template: "{{ value_json.led_disabled_night }}"
+    payload_on: true
+    payload_off: false
+  - platform: "mqtt"
+    state_topic: "zigbee2mqtt/mi_plug"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    value_template: "{{ value_json.power_outage_memory }}"
+    payload_on: true
+    payload_off: false
+  - platform: "mqtt"
+    state_topic: "zigbee2mqtt/mi_plug"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    value_template: "{{ value_json.auto_off }}"
+    payload_on: true
+    payload_off: false
 
 light:
   - platform: "mqtt"
@@ -216,6 +240,13 @@ light:
     automatic_add: true
 
 switch:
+  - platform: "mqtt"
+    state_topic: "zigbee2mqtt/mi_plug"
+    availability_topic: "zigbee2mqtt/bridge/state"
+    payload_off: "OFF"
+    payload_on: "ON"
+    value_template: "{{ value_json.state }}"
+    command_topic: "zigbee2mqtt/mi_plug/set"
   - platform: mqtt
     name: "articsoka"
     icon: "mdi:power-socket-de"
