@@ -772,6 +772,9 @@
                                 },
                                 {
                                     "entity": "sensor.xiaomi_airpurifier_air_quality_pm25"
+                                },
+                                {
+                                    "entity": "switch.xiaomi_airpurifier_led"
                                 }
                             ],
                             "show_header_toggle": false,
