@@ -449,41 +449,48 @@
   unit_of_measurement: 'ppm'
 
 - platform: "mqtt"
+  name: mandula_current
   state_topic: "zigbee2mqtt/mi_plug"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "W"
   value_template: "{{ value_json.power }}"
   device_class: "power"
 - platform: "mqtt"
+  name: mandula_today
   state_topic: "zigbee2mqtt/mi_plug"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "kWh"
   value_template: "{{ value_json.energy }}"
   device_class: "energy"
 - platform: "mqtt"
+  name: mandula_temp
   state_topic: "zigbee2mqtt/mi_plug"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "°C"
   value_template: "{{ value_json.temperature }}"
   device_class: "temperature"
 - platform: "mqtt"
+  name: mandula_volt
   state_topic: "zigbee2mqtt/mi_plug"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "V"
   value_template: "{{ value_json.voltage }}"
   device_class: "voltage"
 - platform: "mqtt"
+  name: mandula_amp
   state_topic: "zigbee2mqtt/mi_plug"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "A"
   value_template: "{{ value_json.current }}"
   device_class: "current"
 - platform: "mqtt"
+  name: mandula_consumer
   state_topic: "zigbee2mqtt/mi_plug"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "W"
   value_template: "{{ value_json.consumer_overload }}"
 - platform: "mqtt"
+  name: mandula_lqi
   state_topic: "zigbee2mqtt/mi_plug"
   availability_topic: "zigbee2mqtt/bridge/state"
   unit_of_measurement: "lqi"

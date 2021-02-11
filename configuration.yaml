@@ -241,6 +241,7 @@ light:
 
 switch:
   - platform: "mqtt"
+    name: "mandula"
     state_topic: "zigbee2mqtt/mi_plug"
     availability_topic: "zigbee2mqtt/bridge/state"
     payload_off: "OFF"
