@@ -134,6 +134,21 @@
                                             },
                                             "type": "button",
                                             "show_state": false
+                                        },
+                                        {
+                                            "entity": "switch.mandula",
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            },
+                                            "icon": "mdi:power-socket-de",
+                                            "icon_height": "40px",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "type": "button",
+                                            "show_state": false
                                         }
                                     ],
                                     "type": "horizontal-stack"
@@ -657,6 +672,18 @@
                             "show_name": false,
                             "title": "NodeMCU - Balcony",
                             "type": "glance"
+                        },
+                        {
+                            "type": "glance",
+                            "entities": [
+                                {
+                                    "entity": "sensor.mandula_temp"
+                                },
+                                {
+                                    "entity": "sensor.mandula_lqi"
+                                }
+                            ],
+                            "title": "Mandula"
                         }
                     ],
                     "icon": "mdi:home-thermometer-outline",
