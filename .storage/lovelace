@@ -238,6 +238,15 @@
                             "graph": "line",
                             "hours_to_show": 96,
                             "type": "sensor"
+                        },
+                        {
+                            "entity": "sensor.btc",
+                            "graph": "line",
+                            "hours_to_show": 96,
+                            "type": "sensor",
+                            "unit": "$",
+                            "name": "Bitcoin",
+                            "icon": "mdi:currency-usd"
                         }
                     ],
                     "icon": "mdi:home",
