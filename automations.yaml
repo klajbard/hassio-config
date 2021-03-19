@@ -34,7 +34,7 @@
         blocks_template:
           - type: section
             text:
-              type: mrkdwn
+              type: plain_text
               text: 'karfiol yesterday consumption: {{ states(''sensor.yesterday_consumption_karfiol'')}}Wh'
 
 ###################
@@ -73,7 +73,7 @@
         blocks_template:
           - type: section
             text:
-              type: mrkdwn
+              type: plain_text
               text: 'Zeller yesterday consumption: {{ states(''sensor.yesterday_consumption_zeller'')}}Wh'
 
 ###################
@@ -112,7 +112,7 @@
         blocks_template:
           - type: section
             text:
-              type: mrkdwn
+              type: plain_text
               text: 'Kelbimbo yesterday consumption: {{ states(''sensor.yesterday_consumption_kelbimbo'')}}Wh'
 
 ###################
@@ -148,7 +148,7 @@
         blocks_template:
           - type: section
             text:
-              type: mrkdwn
+              type: plain_text
               text: 'Articsoka yesterday consumption: {{ states(''sensor.yesterday_consumption_articsoka'')}}Wh'
 
 ###################
@@ -378,7 +378,7 @@
         blocks_template:
           - type: section
             text:
-              type: mrkdwn
+              type: plain_text
               text: 'Started downloading of {{trigger.event.data.name}}'
 
 - alias: "Torrents done"
@@ -395,5 +395,5 @@
         blocks_template:
           - type: section
             text:
-              type: mrkdwn
+              type: plain_text
               text: 'Downloading of {{trigger.event.data.name}} is finished'

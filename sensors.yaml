@@ -529,12 +529,12 @@
 - platform: template
   sensors:
     xiaomi_airpurifier_temp:
-      friendly_name: "Temperature"
+      friendly_name: "Purifier Temperature"
       value_template: "{{ state_attr('fan.xiaomi_miio_device', 'temperature') }}"
       unit_of_measurement: "°C"
       device_class: "temperature"
     xiaomi_airpurifier_humidity:
-      friendly_name: "Humidity"
+      friendly_name: "Purifier Humidity"
       value_template: "{{ state_attr('fan.xiaomi_miio_device', 'humidity') }}"
       unit_of_measurement: "%"
       device_class: "humidity"
@@ -557,12 +557,12 @@
 - platform: template
   sensors:
     xiaomi_humidifier_temp:
-      friendly_name: "Temperature"
+      friendly_name: "Humidifier Temperature"
       value_template: "{{ state_attr('fan.xiaomi_miio_device_2', 'temperature') }}"
       unit_of_measurement: "°C"
       device_class: "temperature"
     xiaomi_humidifier_humidity:
-      friendly_name: "Humidity"
+      friendly_name: "Humidifier Humidity"
       value_template: "{{ state_attr('fan.xiaomi_miio_device_2', 'humidity') }}"
       unit_of_measurement: "%"
       device_class: "humidity"
