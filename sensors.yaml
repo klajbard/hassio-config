@@ -444,8 +444,12 @@
   unit_of_measurement: "%"
   
 - platform: "mqtt"
-  name: airquality
-  state_topic: 'sensor/airquality'
+  name: airqualityp25
+  state_topic: 'sensor/airquality/p25'
+  unit_of_measurement: 'ppm'
+- platform: "mqtt"
+  name: airqualityp10
+  state_topic: 'sensor/airquality/p10'
   unit_of_measurement: 'ppm'
 
 - platform: "mqtt"

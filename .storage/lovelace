@@ -247,6 +247,23 @@
                             "unit": "$",
                             "name": "Bitcoin",
                             "icon": "mdi:currency-usd"
+                        },
+                        {
+                            "type": "horizontal-stack",
+                            "cards": [
+                                {
+                                    "type": "sensor",
+                                    "entity": "sensor.airqualityp25",
+                                    "graph": "line",
+                                    "name": "Airquality pm25"
+                                },
+                                {
+                                    "type": "sensor",
+                                    "entity": "sensor.airqualityp10",
+                                    "graph": "line",
+                                    "name": "Airquality pm10"
+                                }
+                            ]
                         }
                     ],
                     "icon": "mdi:home",
@@ -874,7 +891,10 @@
                         {
                             "entities": [
                                 {
-                                    "entity": "sensor.airquality"
+                                    "entity": "sensor.airqualityp10"
+                                },
+                                {
+                                    "entity": "sensor.airqualityp25"
                                 },
                                 {
                                     "entity": "sensor.elmu_kwh_price"
