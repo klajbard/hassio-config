@@ -355,9 +355,6 @@
                                         },
                                         {
                                             "entity": "sensor.zeller_today_kwh"
-                                        },
-                                        {
-                                            "entity": "sensor.yesterday_consumption_zeller"
                                         }
                                     ],
                                     "show_empty": false,
@@ -380,9 +377,6 @@
                                         },
                                         {
                                             "entity": "sensor.kelbimbo_today"
-                                        },
-                                        {
-                                            "entity": "sensor.yesterday_consumption_kelbimbo"
                                         }
                                     ],
                                     "show_empty": false,
@@ -406,9 +400,6 @@
                                         },
                                         {
                                             "entity": "sensor.karfiol_today"
-                                        },
-                                        {
-                                            "entity": "sensor.yesterday_consumption_karfiol"
                                         }
                                     ],
                                     "show_empty": false,
@@ -432,9 +423,6 @@
                                         },
                                         {
                                             "entity": "sensor.articsoka_today"
-                                        },
-                                        {
-                                            "entity": "sensor.yesterday_consumption_articsoka"
                                         }
                                     ],
                                     "show_empty": false,

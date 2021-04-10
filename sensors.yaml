@@ -1,37 +1,13 @@
 ####################
 # FILE
 ####################
-#%% Consumption reporter
+#%% Price
 - platform: file
   name: elmu_kwh_price
   file_path: /config/scripts/elmu_price
   scan_interval: 86400 # 1 day
   value_template: '{{ value | int }}'
   unit_of_measurement: 'HUF/kWh'
-- platform: file
-  name: yesterday_consumption_zeller
-  file_path: /config/log/zeller/yesterday
-  scan_interval: 1800 # 30 minutes
-  value_template: '{{ value | int }}'
-  unit_of_measurement: 'Wh'
-- platform: file
-  name: yesterday_consumption_kelbimbo
-  file_path: /config/log/kelbimbo/yesterday
-  scan_interval: 1800 # 30 minutes
-  value_template: '{{ value | int }}'
-  unit_of_measurement: 'Wh'
-- platform: file
-  name: yesterday_consumption_karfiol
-  file_path: /config/log/karfiol/yesterday
-  scan_interval: 1800 # 30 minutes
-  value_template: '{{ value | int }}'
-  unit_of_measurement: 'Wh'
-- platform: file
-  name: yesterday_consumption_articsoka
-  file_path: /config/log/articsoka/yesterday
-  scan_interval: 1800 # 30 minutes
-  value_template: '{{ value | int }}'
-  unit_of_measurement: 'Wh'
 
 ####################
 # MQTT
