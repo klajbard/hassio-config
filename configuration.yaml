@@ -16,8 +16,6 @@ history:
       - sensor.aws_monthly_cost
       - sensor.disk_use
       - sensor.disk_use_config_beton
-      - sensor.yesterday_consumption_kelbimbo
-      - sensor.yesterday_consumption_zeller
       - sensor.local_ip
 
 fan:
@@ -88,19 +86,6 @@ camera:
     input: -rtsp_transport tcp -i rtsp://192.168.1.144/ch0_1.h264
 
 ####################
-# Shell commands
-####################
-shell_command:
-    today_consumption_zeller: 'sh /config/scripts/cons.sh zeller {{states("sensor.zeller_today_kwh")}}'
-    get_yesterday_consumption_zeller: 'sh /config/scripts/get_yesterday_cons.sh zeller > /config/log/zeller/yesterday'
-    today_consumption_kelbimbo: 'sh /config/scripts/cons.sh kelbimbo {{states("sensor.kelbimbo_today")}}'
-    get_yesterday_consumption_kelbimbo: 'sh /config/scripts/get_yesterday_cons.sh kelbimbo > /config/log/kelbimbo/yesterday'
-    today_consumption_karfiol: 'sh /config/scripts/cons.sh karfiol {{states("sensor.karfiol_today")}}'
-    get_yesterday_consumption_karfiol: 'sh /config/scripts/get_yesterday_cons.sh karfiol > /config/log/karfiol/yesterday'
-    today_consumption_articsoka: 'sh /config/scripts/cons.sh articsoka {{states("sensor.articsoka_today")}}'
-    get_yesterday_consumption_articsoka: 'sh /config/scripts/get_yesterday_cons.sh articsoka > /config/log/articsoka/yesterday'
-
-####################
 # Notifications_
 ####################
 notify:
@@ -108,10 +93,6 @@ notify:
     platform: slack
     api_key: !secret slack_api
     default_channel: '#general'
-  - name: slack_bot_consumption
-    platform: slack
-    api_key: !secret slack_api
-    default_channel: '#consumption'
   - name: slack_bot_transmission
     platform: slack
     api_key: !secret slack_api
