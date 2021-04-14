@@ -17,13 +17,13 @@
   id: 'bb910f8fbd16d8f1a1cc11ccd6ee8a8a'
   trigger:
     platform: numeric_state
-    entity_id: sensor.kelbimbo_current
+    entity_id: sensor.articsoka_currentF
     below: 5
     for:
       minutes: 5
   action:
     service: homeassistant.turn_off
-    entity_id: switch.kelbimbo
+    entity_id: switch.articsoka
 
 ###################
 # Opple
