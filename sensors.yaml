@@ -374,19 +374,6 @@
   value_template: "{{ value_json.linkquality }}"
 
 - platform: mqtt
-  name: kelbimbo_current
-  state_topic: "tele/powerstrip/SENSOR"
-  unit_of_measurement: 'W'
-  value_template: "{{ value_json.ENERGY.Power }}"
-  icon: "mdi:flash"
-- platform: mqtt
-  name: kelbimbo_today
-  state_topic: "tele/powerstrip/SENSOR"
-  unit_of_measurement: 'Wh'
-  value_template: "{{ value_json.ENERGY.Today | float * 1000 | int }}"
-  icon: "mdi:flash"
-
-- platform: mqtt
   name: karfiol_current
   state_topic: "tele/shp/SENSOR"
   value_template: '{{ value_json.ENERGY.Power }}'
@@ -503,7 +490,7 @@
       unit_of_measurement: 'Wh'
       icon_template: "mdi:flash"
     daily_price:
-      value_template: '{{ (((states.sensor.karfiol_today.state | float) + (states.sensor.kelbimbo_today.state | float) + (states.sensor.zeller_today_kwh.state | float)) * (states.sensor.elmu_kwh_price.state | float) / 1000) | round(2)}}'
+      value_template: '{{ (((states.sensor.karfiol_today.state | float) + (states.sensor.articsoka_today.state | float) + (states.sensor.zeller_today_kwh.state | float)) * (states.sensor.elmu_kwh_price.state | float) / 1000) | round(2)}}'
       unit_of_measurement: 'Ft'
 
 - platform: template

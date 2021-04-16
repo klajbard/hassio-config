@@ -67,19 +67,6 @@
                                 {
                                     "cards": [
                                         {
-                                            "entity": "switch.kelbimbo",
-                                            "hold_action": {
-                                                "action": "more-info"
-                                            },
-                                            "icon_height": "40px",
-                                            "show_icon": true,
-                                            "show_name": true,
-                                            "tap_action": {
-                                                "action": "toggle"
-                                            },
-                                            "type": "entity-button"
-                                        },
-                                        {
                                             "entity": "switch.zeller",
                                             "hold_action": {
                                                 "action": "more-info"
@@ -358,29 +345,6 @@
                                         }
                                     ],
                                     "show_empty": false,
-                                    "state_filter": [
-                                        {
-                                            "operator": "regex",
-                                            "value": "[^unknown]"
-                                        }
-                                    ],
-                                    "type": "entity-filter"
-                                },
-                                {
-                                    "card": {
-                                        "title": "Kelbimbo",
-                                        "type": "glance"
-                                    },
-                                    "entities": [
-                                        {
-                                            "entity": "sensor.kelbimbo_current"
-                                        },
-                                        {
-                                            "entity": "sensor.kelbimbo_today"
-                                        }
-                                    ],
-                                    "show_empty": false,
-                                    "show_icon": false,
                                     "state_filter": [
                                         {
                                             "operator": "regex",

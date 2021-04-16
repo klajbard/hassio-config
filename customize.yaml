@@ -11,10 +11,6 @@ device_tracker.niki:
   friendly_name: "Niki"
 sensor.daily_price:
   icon: "mdi:home-currency-usd"
-sensor.kelbimbo_current:
-  friendly_name: "Kelbimbo current"
-sensor.kelbimbo_today:
-  friendly_name: "Kelbimbo today"
 sensor.karfiol_current:
   friendly_name: "Karfiol current"
 sensor.karfiol_today:

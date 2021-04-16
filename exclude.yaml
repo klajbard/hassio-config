@@ -39,7 +39,6 @@
     - sensor.zeller_total_kwh
     - sensor.zeller_volts
     - switch.zeller
-    - switch.kelbimbo
     - switch.articsoka
     # AC57U
     - sensor.rt_ac57u_bytes_received

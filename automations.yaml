@@ -13,7 +13,7 @@
     service: homeassistant.turn_off
     entity_id: switch.zeller
 
-- alias: "Shutdown kelbimbo if not used"
+- alias: "Shutdown articsoka if not used"
   id: 'bb910f8fbd16d8f1a1cc11ccd6ee8a8a'
   trigger:
     platform: numeric_state
@@ -40,7 +40,7 @@
   - service: switch.toggle
     entity_id: switch.zeller
 
-- alias: "Opple - kelbimbo toggle"
+- alias: "Opple - articsoka toggle"
   id: 'a59ad841ddb6359aead69093e0629435'
   trigger:
     platform: mqtt
@@ -48,17 +48,6 @@
   condition:
     condition: template
     value_template: '{{ trigger.payload_json.action == "button_2_single"}}'
-  action:
-  - service: switch.toggle
-    entity_id: switch.kelbimbo
-
-- alias: "Opple - articsoka toggle"
-  trigger:
-    platform: mqtt
-    topic: zigbee2mqtt/aqara_opple
-  condition:
-    condition: template
-    value_template: '{{ trigger.payload_json.action == "button_3_single"}}'
   action:
   - service: switch.toggle
     entity_id: switch.articsoka

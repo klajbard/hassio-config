@@ -262,17 +262,6 @@ switch:
     payload_available: "Online"
     payload_not_available: "Offline"
     qos: 1
-  - platform: mqtt
-    name: "kelbimbo"
-    icon: "mdi:power-socket-de"
-    state_topic: "stat/powerstrip/POWER"
-    command_topic: "cmnd/powerstrip/POWER"
-    payload_on: "ON"
-    payload_off: "OFF"
-    availability_topic: "tele/powerstrip/LWT"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-    qos: 1
   # Xiaomi Air Purifier 2S
   - platform: template
     switches:
