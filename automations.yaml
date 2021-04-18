@@ -17,7 +17,7 @@
   id: 'bb910f8fbd16d8f1a1cc11ccd6ee8a8a'
   trigger:
     platform: numeric_state
-    entity_id: sensor.articsoka_currentF
+    entity_id: sensor.articsoka_current
     below: 5
     for:
       minutes: 5
