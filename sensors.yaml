@@ -464,6 +464,24 @@
   value_template: "{{ value_json.linkquality }}"
   icon: "mdi:signal"
 
+- platform: "mqtt"
+  name: rpi_cpu_temp
+  state_topic: "pi/status/cpu_temp"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+
+- platform: "mqtt"
+  name: rpi_temperature
+  state_topic: "pi/status/temperature"
+  unit_of_measurement: "°C"
+  device_class: "temperature"
+
+- platform: "mqtt"
+  name: rpi_humidity
+  state_topic: "pi/status/humidity"
+  unit_of_measurement: "%"
+  device_class: "humidity"
+
 ####################
 # Template
 ####################
@@ -565,26 +583,3 @@
   resources:
     - type: disk_use
       arg: /
-
-####################
-# CMD
-####################
-#%% Hygrometer GPIO
-- platform: command_line
-  name: rpi_temperature
-  command: 'cat /config/log/dht_rpi'
-  value_template: "{{ value_json.temperature }}"
-  scan_interval: 60
-  unit_of_measurement: '°C'
-- platform: command_line
-  name: rpi_humidity
-  command: 'cat /config/log/dht_rpi'
-  scan_interval: 60
-  unit_of_measurement: '%'
-  value_template: "{{ value_json.humidity }}"
-#%% RPI CPU temp
-- platform: command_line
-  name: rpi_cpu_temp
-  command: "cat /sys/class/thermal/thermal_zone0/temp"
-  unit_of_measurement: "°C"
-  value_template: '{{ value | multiply(0.001) | round(1) }}'
