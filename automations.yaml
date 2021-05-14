@@ -208,14 +208,8 @@
   action:
     service: notify.slack_bot_transmission
     data_template:
-      title: Torrent completed!
-      message: ''
-      data:
-        blocks_template:
-          - type: section
-            text:
-              type: plain_text
-              text: 'Started downloading of {{trigger.event.data.name}}'
+      title: Torrent started!
+      message: 'Started downloading of {{trigger.event.data.name}}'
 
 - alias: "Torrents done"
   id: '441ec1de12f22d88fb2332ffefa6d439'
@@ -226,10 +220,4 @@
     service: notify.slack_bot_transmission
     data_template:
       title: Torrent completed!
-      message: ''
-      data:
-        blocks_template:
-          - type: section
-            text:
-              type: plain_text
-              text: 'Downloading of {{trigger.event.data.name}} is finished'
+      message: 'Downloading of {{trigger.event.data.name}} is finished'

@@ -89,10 +89,6 @@ camera:
 # Notifications_
 ####################
 notify:
-  - name: slack_bot
-    platform: slack
-    api_key: !secret slack_api
-    default_channel: '#general'
   - name: slack_bot_transmission
     platform: slack
     api_key: !secret slack_api

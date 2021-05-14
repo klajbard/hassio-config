@@ -375,7 +375,30 @@
                                         }
                                     ],
                                     "type": "entity-filter"
-                                },
+                                },,
+                                {
+                                    "card": {
+                                        "title": "Mandula",
+                                        "type": "glance"
+                                    },
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.mandula_current"
+                                        },
+                                        {
+                                            "entity": "sensor.mandula_today"
+                                        }
+                                    ],
+                                    "show_empty": false,
+                                    "show_icon": false,
+                                    "state_filter": [
+                                        {
+                                            "operator": "regex",
+                                            "value": "[^unknown]"
+                                        }
+                                    ],
+                                    "type": "entity-filter"
+                                }
                                 {
                                     "card": {
                                         "title": "Articsoka",
